@@ -1,14 +1,16 @@
 import { useState } from 'react'
+import Menu from "./components/Menu";
 import Categorias from './components/Categoria';
+import dados from './Data/dados';
 
 const todasCategorias = ['todos', ... new Set(dados.map(item => item.categoria))]
 
 function App() {
 
-  const [menuItems, setMenuItems] = useState();
-  const [categorias, setCategorias] = useState();
+  const [menuItems, setMenuItems] = useState(dados);
+  const [categorias, setCategorias] = useState(todasCategorias);
 
-  const filtorItems = (categorias) => {
+  const filtroItems = (categoria) => {
     if (categoria == "todos")
         setMenuItems(dados);
     else
@@ -31,7 +33,7 @@ function App() {
         
         <main>
           <section>
-            <Categorias categorias={categorias} filtorItems={filtorItems} />
+            <Categorias categorias={categorias} filtroItems={filtroItems} />
             <Menu items={menuItems}/>
           </section>
         </main>
